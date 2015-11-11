@@ -12,5 +12,5 @@ import storage.implement.TaskStorage;
  * @author Денис
  */
 public class SerialasiableTaskStorage extends TaskStorage implements Serializable {
-    
-}
+    //
+} 
