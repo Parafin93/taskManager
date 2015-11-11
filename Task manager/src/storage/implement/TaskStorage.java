@@ -3,12 +3,7 @@ package storage.implement;
 
 import storage.interfaces.Storage;
 import task.implement.TaskImpl;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 
 
 /*
@@ -23,7 +18,7 @@ import java.io.ObjectOutputStream;
 public abstract class TaskStorage implements Storage<TaskImpl> {
 
     //может еще какие методы добавить?
-    //типа сохранение последней saveObject loadObject
+    //типа хранение последней сохраненной/загруженной таски
 
     public void saveObject(TaskImpl object) {
         
