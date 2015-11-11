@@ -1,5 +1,4 @@
-
-import java.util.Date;
+package storage.interfaces;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,7 +10,7 @@ import java.util.Date;
  *
  * @author Дот
  */
-public interface Taskable {
-    public Date GetTime();
-    public void SetTime(Date SomeTime);
+public interface Storage<T> {
+    public void saveObject(T object);
+    public void loadObject(T object);
 }
