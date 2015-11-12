@@ -1,5 +1,8 @@
 package storage.interfaces;
 
+import java.util.Collection;
+import java.util.Collection;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,5 +15,7 @@ package storage.interfaces;
  */
 public interface Storage<T> {
     public void saveObject(T object);
-    public void loadObject(T object);
+    public T loadObject();
+    public void saveCollectionObject(Collection<T> collectionObject);
+    public Collection<T> loadCollectionObject();
 }

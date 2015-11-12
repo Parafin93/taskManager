@@ -3,7 +3,7 @@ package storage.implement;
 
 import java.io.Serializable;
 import storage.interfaces.Storage;
-import task.implement.TaskImpl;
+import task.interfaces.Task;
 
 
 
@@ -16,20 +16,8 @@ import task.implement.TaskImpl;
  *
  * @author Дот
  */
-public abstract class TaskStorage implements Storage<TaskImpl>, Serializable {
-
+public abstract class TaskStorage implements Storage<Task> {
+}
     //может еще какие методы добавить?
     //типа хранение последней сохраненной/загруженной таски
 
-    public void saveObject(TaskImpl object) {
-        
-    }
-
-    public void loadObject(TaskImpl object) {
-        
-    }
-
-    
-
-    
-}
