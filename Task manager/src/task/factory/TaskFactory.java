@@ -4,7 +4,7 @@
  */
 package task.factory;
 
-import java.util.Date;
+
 import task.implement.TaskImpl;
 import task.interfaces.Task;
 
@@ -30,11 +30,9 @@ public class TaskFactory {
         return instance;
     }
 
-    public Task getDummyTask(Date someTime, String someDescription) {
-        if (!(someDescription == null)) {
-            return new TaskImpl(someTime, someDescription);
-        }
+    public Task getDummyTask() {
+        
 
-        return new TaskImpl(someTime);
+        return new TaskImpl();
     }
 }
