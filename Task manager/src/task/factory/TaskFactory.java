@@ -4,7 +4,6 @@
  */
 package task.factory;
 
-
 import task.implement.TaskImpl;
 import task.interfaces.Task;
 
@@ -31,7 +30,7 @@ public class TaskFactory {
     }
 
     public Task getDummyTask() {
-        
+
 
         return new TaskImpl();
     }

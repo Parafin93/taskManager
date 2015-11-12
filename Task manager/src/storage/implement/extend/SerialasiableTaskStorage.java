@@ -30,17 +30,14 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
 
     @Override
     public void saveCollectionObject(Collection<Task> collectionObject) {
-       /* collectionObject=new ArrayList<Task>();
-        collectionObject.add(new TaskImpl());*/
+        /* collectionObject=new ArrayList<Task>();
+         collectionObject.add(new TaskImpl());*/
     }
 
     @Override
     public Collection<Task> loadCollectionObject() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
-
-   
-    //
-} 
+    ////добавить методы 
+    //типа хранение последней сохраненной/загруженной таски
+}

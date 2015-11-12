@@ -1,8 +1,8 @@
 package task.implement;
 
-import task.interfaces.Task;
 import java.io.Serializable;
 import java.util.Date;
+import task.interfaces.Task;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,6 +53,7 @@ public class TaskImpl implements Serializable, Task {
         this.name = someName;
     }
 
+    @Override
     public boolean equals(Object o) {//доделать
         if (o == null) {
             return false;
@@ -70,6 +71,7 @@ public class TaskImpl implements Serializable, Task {
         return (this.timeOfBeginning.equals(e.timeOfBeginning) & this.name.equals(e.name) & this.description.equals(e.description));
     }
 
+    @Override
     public int hashCode() { // подумать как сделать
         return (description + name).hashCode() + timeOfBeginning.hashCode();
     }
