@@ -18,7 +18,7 @@ public class TaskImpl implements Serializable, Task {
     private Date timeOfBeginning;
     private String description;
     private String name;
-
+    private int status = 0;
     public TaskImpl() {
         this(null, null, null);
     }
@@ -74,5 +74,23 @@ public class TaskImpl implements Serializable, Task {
     @Override
     public int hashCode() { // подумать как сделать
         return (description + name).hashCode() + timeOfBeginning.hashCode();
+    }
+
+    @Override
+    public void setStatusComplete() {
+        this.status=COMPLETE;
+    }
+    @Override
+    public void setStatusOverdue() {
+        this.status=OVERDUE;
+    }
+    @Override
+    public void setStatusScheduled() {
+        this.status=SCHEDULED;
+    }
+
+    @Override
+    public int getStatus() {
+        return this.status;
     }
 }

@@ -12,6 +12,12 @@ import java.util.Date;
  * @author Дот
  */
 public interface Task {
+//    public static final int EMPTY=0;
+
+    public static final int SCHEDULED = 1;
+    public static final int OVERDUE = 2;
+    public static final int COMPLETE = 3;
+    //public int status = 0;
 
     public Date getTime();
 
@@ -24,4 +30,9 @@ public interface Task {
     public void setName(String someName);
 
     public void setDescription(String someDescription);
+
+    public void setStatusScheduled();
+    public void setStatusOverdue();
+    public void setStatusComplete();
+    public int getStatus();
 }
