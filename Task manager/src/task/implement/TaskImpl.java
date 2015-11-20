@@ -15,7 +15,7 @@ import task.interfaces.Task;
  */
 public class TaskImpl implements Serializable, Task {
 
-    private Date timeOfBeginning;
+    private volatile Date timeOfBeginning;
     private String description;
     private String name;
     private int status = 0;
@@ -29,7 +29,7 @@ public class TaskImpl implements Serializable, Task {
         setName(someName);
     }
 
-    public Date getTime() {
+    public synchronized Date getTime() {
         return this.timeOfBeginning;
     }
 
