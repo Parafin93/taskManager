@@ -19,7 +19,7 @@ import task.interfaces.Task;
 public class ThreadPool {
 
     static ScheduledExecutorService pool = Executors.newScheduledThreadPool(30);
-
+    
     public ThreadPool() {
     }
 

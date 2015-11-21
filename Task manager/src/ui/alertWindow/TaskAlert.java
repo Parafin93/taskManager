@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.mainwindow.tests;
+package ui.alertWindow;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -132,6 +132,7 @@ public class TaskAlert extends JFrame{
         setContentPane(top);
         pack();
         setSize(500, 500);
+        setResizable(false);
     }
 
     

@@ -29,11 +29,11 @@ public class StorageFactory {
         return instance;
     }
 
-    public TaskStorage getStorage(int type) {
-        if(type==1){
+    public SerialasiableTaskStorage getSerialasiableTaskStorage() {
+        
             return new SerialasiableTaskStorage();
-        }
+        
 
-        return new SerialasiableTaskStorage(); // пока что так
+        
     }
 }

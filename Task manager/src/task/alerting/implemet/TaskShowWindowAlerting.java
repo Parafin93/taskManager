@@ -4,10 +4,9 @@
  */
 package task.alerting.implemet;
 
-import javax.swing.JFrame;
 import task.alerting.TaskAlerting;
 import task.interfaces.Task;
-import ui.mainwindow.tests.TaskAlert;
+import ui.alertWindow.TaskAlert;
 
 /**
  *
@@ -20,6 +19,7 @@ public class TaskShowWindowAlerting implements TaskAlerting{
         final String name=task.getName();
         final String description =task.getDescription();
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 
                 new TaskAlert(name,description).setVisible(true);

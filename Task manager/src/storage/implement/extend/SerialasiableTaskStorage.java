@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import storage.implement.TaskStorage;
+import task.implement.TaskImpl;
 import task.interfaces.Task;
 
 /**
@@ -25,41 +26,66 @@ import task.interfaces.Task;
  */
 public class SerialasiableTaskStorage extends TaskStorage implements Serializable {
 
-    FileOutputStream fos;
+    static FileOutputStream fos;
     
-    ObjectOutputStream oos;
+    static ObjectOutputStream oos;
     private String path;
-    FileInputStream fis;
-    ObjectInputStream oin;
+    static FileInputStream fis;
+    static ObjectInputStream oin;
 
     public SerialasiableTaskStorage() {
-        path = "tasks.txt";
+        path = "out.txt";
+        init();
     }
-    public void closeS() throws IOException{
-        oos.close();
-        fos.close();
-        
-    }
-    public void closeL() throws IOException{
-        
-        oin.close();
-        fis.close();
-    }
-    @Override
-    public void saveObject(Task object) {
+    public void init(){
         try {
             
             fos = new FileOutputStream(path);
 
             oos = new ObjectOutputStream(fos);
+            fis = new FileInputStream(path);
+            oin = new ObjectInputStream(fis);
+        } catch (IOException ex) {
+            Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void closeSave(){
+        try {
             
-            oos.writeObject(object);
-            
+            oos.close();
+            fos.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void flush(){
+        try {
             oos.flush();
             fos.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void closeLoad(){
+        try {
             
-            //oos.close();
-            //fos.close();
+            oin.close();
+            fis.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @Override
+    public void saveObject(Task object) {
+        try {
+            Task t=object;
+            //fos = new FileOutputStream(path);
+
+            //oos = new ObjectOutputStream(fos);
+            
+            oos.writeObject(t);            
+                        
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -69,11 +95,12 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
 
     @Override
     public Task loadObject() {
+        
         try {
-            fis = new FileInputStream(path);
-            oin = new ObjectInputStream(fis);
+            //fis = new FileInputStream(path);
+            //oin = new ObjectInputStream(fis);
             
-            Task t = (Task) oin.readObject();
+             Task t = (Task) oin.readObject();
             
             //oin.close();
             //fis.close();
@@ -92,16 +119,12 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
     @Override
     public void saveCollectionObject(Collection<Task> collectionObject) {
         try {
-            fos = new FileOutputStream(path);
-
-            oos = new ObjectOutputStream(fos);
+           
             for (Task t : collectionObject) {
                 oos.writeObject(t);
             }
 
-            oos.flush();
-            oos.close();
-        } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex) {
             Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,20 +133,19 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
 
     @Override
     public Collection<Task> loadCollectionObject() {
+        Collection<Task> tempCollection = new ArrayList<Task>();
         try {
-            Collection<Task> tempCollection = new ArrayList<Task>();
-            fis = new FileInputStream(path);
-            oin = new ObjectInputStream(fis);
-            long i=0;
+            
+           
+            
             while (oin.available() > 0) {
-                oin.skip(i);
+                
                 Object ob=oin.readObject();
-                i+=ob.toString().getBytes().length;
+                
                 Task t = (Task) ob;
                 tempCollection.add(t);
             }
-            oin.close();
-            fis.close();
+            
             return tempCollection;
 
         } catch (FileNotFoundException ex) {
@@ -133,7 +155,7 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
         } catch (IOException ex) {
             Logger.getLogger(SerialasiableTaskStorage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return tempCollection;
     }
     ////добавить методы 
     //типа хранение последней сохраненной/загруженной таски
@@ -149,6 +171,6 @@ public class SerialasiableTaskStorage extends TaskStorage implements Serializabl
      * @param path the path to set
      */
     public void setPath(String path) {
-        this.path = path + "tasks.txt";
+        this.path = path + "out.txt";
     }
 }
